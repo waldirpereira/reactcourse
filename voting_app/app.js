@@ -1,17 +1,20 @@
 const ProductList = React.createClass({
+	sortType: 'desc',
   getInitialState: function() {
     return {
       products: [],
+			sortType: null
     };
   },
   componentDidMount: function() {
     this.updateState();
   },
   updateState: function() {
+		const sortType = this.sortType;
     const products = Data.sort((a, b) => {
-      return b.votes - a.votes;
+      return (b.votes - a.votes) * (sortType === 'desc' ? 1 : -1);
     });
-    this.setState({ products: products });
+    this.setState({ products: products , sortType: sortType});
   },
   handleProductUpVote: function(productId) {
     this.handleProductVote(productId, 1);
@@ -28,6 +31,10 @@ const ProductList = React.createClass({
     });
     this.updateState();
   },
+	handleSortDirectionChange: function() {
+		this.sortType = this.sortType === 'desc' ? 'asc' : 'desc';
+		this.updateState();
+	},
   render: function() {
     const products = this.state.products.map((product) => {
       return(
@@ -47,9 +54,14 @@ const ProductList = React.createClass({
       );
     });
     return(
-      <div className='ui items'>
-        {products}
-      </div>
+			<div>
+				<button onClick={this.handleSortDirectionChange}>
+					Sort direction: {this.state.sortType} (click to change!)
+				</button>
+	      <div className='ui items'>
+	        {products}
+	      </div>
+	    </div>
     );
   },
 });
