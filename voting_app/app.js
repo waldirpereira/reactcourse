@@ -1,8 +1,8 @@
 const ProductList = React.createClass({
-	render: function() {
-		const products = Data.map((product) => {
-			return(
-				<Product
+  render: function() {
+    const products = Data.map((product) => {
+      return(
+        <Product
           key={'product-' + product.id}
           id={product.id}
           title={product.title}
@@ -12,20 +12,20 @@ const ProductList = React.createClass({
           submitter_avatar_url={product.submitter_avatar_url}
           product_image_url={product.product_image_url}
         />
-			);
-		});
-		return(
-			<div className='ui items'>
+      );
+    });
+    return(
+      <div className='ui items'>
         {products}
       </div>
-		);
-	},
+    );
+  },
 });
 
 const Product = React.createClass({
-	render: function() {
-		return(
-			<div className='item'>
+  render: function() {
+    return(
+      <div className='item'>
         <div className='image'>
         <img src={this.props.product_image_url} />
         </div>
@@ -50,11 +50,11 @@ const Product = React.createClass({
           </div>
         </div>
       </div>
-		);
-	},
+    );
+  },
 });
 
 ReactDOM.render(
-	<ProductList />,
-	document.getElementById('content')
+  <ProductList />,
+  document.getElementById('content')
 );
