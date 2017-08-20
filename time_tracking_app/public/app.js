@@ -133,7 +133,8 @@ const ToggleableTimerForm = React.createClass({
         <div className='ui basic content center aligned segment'>
           <button
             className='ui basic button icon'
-            onClick={this.handleFormOpen}>
+            onClick={this.handleFormOpen}
+          >
             <i className='plus icon'></i>
           </button>
         </div>
